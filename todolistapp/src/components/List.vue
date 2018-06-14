@@ -37,7 +37,7 @@ ul li.checked::before {
 </template>
 <script type="text/javascript">
 import Constant from '../constant';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import _ from 'lodash';
 
 export default {
@@ -51,7 +51,7 @@ export default {
                 else return { checked: false };
             }
         },
-        mapMutations([
+        mapActions([
             Constant.DELETE_TODO,
             Constant.DONE_TOGGLE
         ]),
