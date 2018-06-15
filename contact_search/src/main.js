@@ -2,7 +2,7 @@ import Vue from 'vue';
 import ES6Promise from 'es6-promise';
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import store from './store/index';
 
 ES6Promise.polyfill();
 
