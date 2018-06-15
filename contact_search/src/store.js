@@ -20,7 +20,8 @@ export default new Vuex.Store({
     [Constant.SEARCH_CONTACT]: (store, payload) => {
       SearchApi.searchContact(payload.name)
         .then((response) => {
-          store.commit(Constant.SEARCH_CONTACT, { contacts: response.data });
+          const r = store.commit(Constant.SEARCH_CONTACT, { contacts: response.data });
+          console.log(r);
         });
     },
 
