@@ -1,15 +1,8 @@
 import Vue from 'vue';
-import axios from 'axios';
 import App from './App.vue';
-// import App from './AppAxiosTest.vue';
 import router from './router';
-import store from './store';
-import eventBus from './EventBus';
+import store from './store/index';
 
-require('es6-promise').polyfill();
-
-Vue.prototype.$axios = axios;
-Vue.prototype.$eventBus = eventBus;
 Vue.config.productionTip = false;
 
 new Vue({

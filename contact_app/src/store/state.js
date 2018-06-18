@@ -1,4 +1,3 @@
-import Constant from '../constant';
 import CONF from '../config';
 
 export default {

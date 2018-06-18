@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios';
 import CONF from '../config';
 
@@ -25,7 +26,6 @@ export default {
   updatePhoto(no, file) {
     let data = new FormData();
     data.append('photo', file);
-
     return axios.post(CONF.UPDATE_PHOTO.replace('${no}', no), data);
   },
 };

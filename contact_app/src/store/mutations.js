@@ -1,8 +1,11 @@
+/* eslint-disable */
 import Constant from '../constant';
 
 export default {
   [Constant.ADD_CONTACT_FORM]: (state) => {
-    state.contact = { no: '', name: '', tel: '', address: '', photo: '' };
+    state.contact = {
+      no: '', name: '', tel: '', address: '', photo: '',
+    };
     state.mode = 'add';
     state.currentView = 'contactForm';
   },

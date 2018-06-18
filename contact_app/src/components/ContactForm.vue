@@ -8,7 +8,8 @@
       </div>
       <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" class="long" v-model="contact.name" ref="name" placeholder="input name">
+        <input type="text" name="name" class="long"
+          v-model="contact.name" ref="name" placeholder="input name">
       </div>
       <div class="form-group">
         <label>Tel</label>
@@ -16,7 +17,8 @@
       </div>
       <div class="form-group">
         <label>Address</label>
-        <input type="text" name="address" class="long" v-model="contact.address" placeholder="input address">
+        <input type="text" name="address" class="long"
+          v-model="contact.address" placeholder="input address">
       </div>
       <div class="form-group">
         <div>&nbsp;</div>
@@ -28,46 +30,38 @@
 </template>
 
 <script>
+import _ from 'lodash';
+import { mapState } from 'vuex';
+import Constant from '../constant';
+
 export default {
   name: 'contactForm',
-  props: {
-    mode: { type: String, default: 'add' },
-    contact: {
-      type: Object,
-      default() {
-        return {
-          no: '',
-          name: '',
-          tel: '',
-          address: '',
-          photo: '',
-        };
+  computed: _.extend(
+    {
+      btnText() {
+        if (this.mode !== 'update') return 'Add';
+        return 'Edit';
+      },
+      headingText() {
+        if (this.mode !== 'update') return 'Add new contact';
+        return 'Update contact';
       },
     },
-  },
+    mapState(['mode', 'contact']),
+  ),
   mounted() {
     this.$refs.name.focus();
-  },
-  computed: {
-    btnText() {
-      if (this.mode !== 'update') return 'Add';
-      else return 'Update';
-    },
-    headingText() {
-      if (this.mode !== 'update') return 'Add new contact';
-      else return 'Update contact';
-    },
   },
   methods: {
     submitEvent() {
       if (this.mode === 'update') {
-        this.$eventBus.$emit('updateSubmit', this.contact);
+        this.$store.dispatch(Constant.UPDATE_CONTACT);
       } else {
-        this.$eventBus.$emit('addSubmit', this.contact);
+        this.$store.dispatch(Constant.ADD_CONTACT);
       }
     },
     cancelEvent() {
-      this.$eventBus.$emit('cancel');
+      this.$store.dispatch(Constant.CANCEL_FORM);
     },
   },
 };

@@ -29,23 +29,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import Constant from '../constant';
+
+
 export default {
   name: 'contactList',
-  props: ['contactlist'],
+  computed: mapState(['contactlist']),
   methods: {
     addContact() {
-      this.$eventBus.$emit('addContactForm');
+      this.$store.dispatch(Constant.ADD_CONTACT_FORM);
     },
     editContact(no) {
-      this.$eventBus.$emit('editContactForm', no);
+      this.$store.dispatch(Constant.EDIT_CONTACT_FORM, { no });
     },
     deleteContact(no) {
+      // eslint-disable-next-line
       if (confirm('Delete?') === true) {
-        this.$eventBus.$emit('deleteContact', no);
+        this.$store.dispatch(Constant.DELETE_CONTACT, { no });
       }
     },
     editPhoto(no) {
-      this.$eventBus.$emit('editPhoto', no);
+      this.$store.dispatch(Constant.EDIT_PHOTO_FORM, { no });
     },
   },
 };
